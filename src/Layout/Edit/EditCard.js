@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {useParams, Link, useHistory, useRouteMatch} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs';
 import {readDeck, readCard, updateCard} from '../../utils/api';
+import CardForm from '../CardForm';
 
 const EditCard = () => {
 let {deckId} = useParams();
@@ -11,7 +12,7 @@ let [deck, setDeck] = useState({});
 let [card, setCard] = useState({});
 let [front, setFront] = useState('');
 let [back, setBack] = useState('');
-
+let edit = true;
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -25,7 +26,7 @@ let [back, setBack] = useState('');
 
         }
         fetchData();
-    },[])
+    },[cardId, deckId])
 
     const handleSubmit = async () => {
         card.front = front;
@@ -39,17 +40,15 @@ if(card.id){
         <div>
             <Breadcrumbs deck={deck} cardId={cardId}/>
 
-            <form className='form-group'>
-                <label htmlFor='front'>Front:</label>
-                <textarea className='form-control'type='text' name='front' value={front} onChange={(e)=>setFront(e.target.value)}></textarea>
-                <label htmlFor='back'>Back:</label>
-                <textarea className='form-control'type='text' name='back' value={back} onChange={(e)=>setBack(e.target.value)}></textarea>
-            </form>
-            
-
-            <button className='btn mt-3' onClick={handleSubmit}>💾 Save</button>
-            <Link to={`/${deck.id}/view`}><button className='btn mt-3' style={{opacity:'50%'}}>❌ Cancel</button></Link>
-
+            <CardForm 
+            deck={deck}
+            front={front}
+            setFront={setFront}
+            back={back}
+            setBack={setBack}
+            handleSubmit={handleSubmit}
+            edit={edit}
+            />
         </div>
     );
 } return (<p>Loading...</p>)

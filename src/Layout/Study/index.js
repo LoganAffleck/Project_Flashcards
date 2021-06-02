@@ -20,7 +20,7 @@ const Study = () => {
     }
         getDeck();
         
-    }, [])
+    }, [deckId])
 
     if (deck.name) {
 

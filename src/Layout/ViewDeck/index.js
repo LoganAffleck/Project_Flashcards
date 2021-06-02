@@ -19,7 +19,7 @@ const View = () =>{
     }
         getDeck();
         
-    }, [])
+    }, [deckId])
 
 if (deck){
     let {cards} = deck

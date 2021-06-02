@@ -23,7 +23,7 @@ const EditDeck = () => {
     }
         getDeck();
         
-    }, [])
+    }, [deckId])
 
     const handleSubmit = async () => {
         deck.description = description;
@@ -66,7 +66,7 @@ if(name !== null){
             >
             ✔ Submit
             </button>
-            <Link to={`/${deck.id}/view`}>
+            <Link to={`/decks/${deck.id}`}>
                 <button className='btn mt-3'
                 style={{opacity:'50%'}}>
                 ❌Cancel

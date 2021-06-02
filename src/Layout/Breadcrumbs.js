@@ -27,7 +27,7 @@ const Breadcrumbs = ({deck, name, cardId}) => {
         }
         
         return (
-        <div>
+        <div style={{display:'flex'}}>
         {breadcrumbsPath.map((item, index, array)=>{
             if (index === array.length -1) {
             return(
